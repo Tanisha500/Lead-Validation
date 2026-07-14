@@ -134,13 +134,19 @@ Upload:
 ```
 leads_list.csv
 ```
+---
 
 ##  Screenshots
 
 Add screenshots here:
 
 - Workflow
+  <img width="1415" height="562" alt="image" src="https://github.com/user-attachments/assets/15852a6b-fe3c-4dc1-9d46-9f9e8466b6db" />
+
 - Approved Leads Table
+<img width="1135" height="495" alt="image" src="https://github.com/user-attachments/assets/dcba7358-ccc7-4aaa-879f-5548aa86be71" />
+
 - Quarantined Leads Table
-- Successful Execution
+<img width="1127" height="418" alt="image" src="https://github.com/user-attachments/assets/624f862e-c94c-44de-acd7-d28ab8d95a9c" />
+
 
