@@ -1,0 +1,292 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-validation",
+        "options": {
+          "binaryPropertyName": "data"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4b29bf85-dbde-4b8e-a1a7-0aaeba0386db",
+      "name": "Receive CSV Upload",
+      "webhookId": "503e368f-b533-416f-adcf-51c61bf27310"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "data0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "ea177922-5722-4a3d-af18-dc5764928574",
+      "name": "Parse CSV File"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "26483bb9-bf96-496e-ae00-156236f548a9",
+              "leftValue": "={{ $json.Email }}",
+              "rightValue": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        512,
+        0
+      ],
+      "id": "fde3e78e-ca88-4d08-b170-6f7bb33078d3",
+      "name": "Validate Email"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appiUtVDy32ncohuW",
+          "mode": "list",
+          "cachedResultName": "Lead Validation",
+          "cachedResultUrl": "https://airtable.com/appiUtVDy32ncohuW"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblVZzVEuVGRuleBh",
+          "mode": "list",
+          "cachedResultName": "Approved_Leads",
+          "cachedResultUrl": "https://airtable.com/appiUtVDy32ncohuW/tblVZzVEuVGRuleBh"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {
+            "Name": "={{ $json.Name }}",
+            "Email": "={{ $json.Email }}",
+            "Company": "={{ $json.Company }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        -160
+      ],
+      "id": "7f38071f-5bb5-4ec1-9f5e-7ab543b9e9ab",
+      "name": "Store Approved Lead",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "sVeJncCHpAOccc4c",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appiUtVDy32ncohuW",
+          "mode": "list",
+          "cachedResultName": "Lead Validation",
+          "cachedResultUrl": "https://airtable.com/appiUtVDy32ncohuW"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblrLrQURaFRnKMQy",
+          "mode": "list",
+          "cachedResultName": "Quarantined_Leads",
+          "cachedResultUrl": "https://airtable.com/appiUtVDy32ncohuW/tblrLrQURaFRnKMQy"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        880,
+        160
+      ],
+      "id": "60cff0fc-0b4b-4bd4-89a6-7d767d06dcc3",
+      "name": "Store Quarantined Lead",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "sVeJncCHpAOccc4c",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Receive CSV Upload": {
+      "main": [
+        [
+          {
+            "node": "Parse CSV File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse CSV File": {
+      "main": [
+        [
+          {
+            "node": "Validate Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate Email": {
+      "main": [
+        [
+          {
+            "node": "Store Approved Lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Store Quarantined Lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Approved Lead": {
+      "main": [
+        []
+      ]
+    },
+    "Store Quarantined Lead": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "49a7cd48-ec5d-44bd-b236-2a79c3313222",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8987e27ceac6e707d01e164a8cc3ada3f576bedd813b0506c1a66c37fc50dc45"
+  },
+  "id": "gQbbfBEDw3ONS6eA56coQ",
+  "tags": []
+}
