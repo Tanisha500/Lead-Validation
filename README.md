@@ -64,7 +64,7 @@ Airtable         Airtable
 
 ---
 
-## 📧 Email Validation Rule
+## Email Validation Rule
 
 The workflow validates email addresses using the following Regular Expression:
 
@@ -101,7 +101,6 @@ Fields:
 - Email
 - Company
 
----
 
 ### Quarantined Leads
 
@@ -119,7 +118,7 @@ Fields:
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 The workflow was tested using **Postman**.
 
@@ -136,7 +135,7 @@ Upload:
 leads_list.csv
 ```
 
-## 📸 Screenshots
+##  Screenshots
 
 Add screenshots here:
 
